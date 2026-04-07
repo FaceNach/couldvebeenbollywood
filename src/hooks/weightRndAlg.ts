@@ -22,7 +22,10 @@ export class WeightRandomAlgo {
 
       this.totalWeight += weight;
       this.cumulativeWeight[i] = this.totalWeight;
-      this.countriesMap.set(countries[i].name, countries[i].population);
+      this.countriesMap.set(
+        countries[i].name.toLocaleLowerCase().replaceAll(" ", ""),
+        countries[i].population,
+      );
     }
 
     if (this.totalWeight <= 0) {
@@ -56,7 +59,7 @@ export class WeightRandomAlgo {
       throw new Error("Not valid name or empty string");
     }
 
-    const population = this.countriesMap.get(name);
+    const population = this.countriesMap.get(name.toLocaleLowerCase());
 
     if (population === undefined) {
       return 0;

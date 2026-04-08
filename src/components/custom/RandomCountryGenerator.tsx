@@ -4,6 +4,7 @@ import { Card } from "@/components/ui/card";
 import { formattedPercentage } from "@/helpers/formattedPercetage";
 import type { WeightRandomAlgo } from "@/hooks/weightRndAlg";
 import { useState } from "react";
+import { MapChart } from "./globalMap";
 
 interface RandomCountryGeneratorProps {
   algoLogic: WeightRandomAlgo;
@@ -29,8 +30,10 @@ export const RandomCountryGenerator = ({
   algoLogic,
 }: RandomCountryGeneratorProps) => {
   const [country, setCountry] = useState<CountryProps | null>(null);
+  const [randomVisibility, setRandomVisibility] = useState<boolean>(false);
 
   const handleRandomCountryBorn = async () => {
+    setRandomVisibility(false);
     const randomCountry = algoLogic.getRandom();
     const percentage = algoLogic.getPercentageByCountry(randomCountry.name);
     const formattedPercentageResult = formattedPercentage(percentage);
@@ -55,6 +58,8 @@ export const RandomCountryGenerator = ({
       population: countryData.population,
       region: countryData.region,
     });
+
+    setRandomVisibility(true);
   };
 
   return (
@@ -69,25 +74,35 @@ export const RandomCountryGenerator = ({
       </section>
 
       {/* Results Card */}
-      <Card className="rounded-xl border border-border bg-card p-6">
-        <div className="mb-6 text-center">
-          <h2 className="mb-2 text-3xl font-bold">{ country?.countryName}</h2>
-          <p className="text-4xl font-bold text-primary">{country?.probabilityBeingBorn}%</p>
-          <p className="mt-1 text-sm text-muted-foreground">
-            probability of being born here
-          </p>
-        </div>
+      {randomVisibility && (
+        <Card className="rounded-xl border border-border bg-card p-6">
+          <div className="mb-6 text-center">
+            <h2 className="mb-2 text-3xl font-bold">{country?.countryName}</h2>
+            <p className="text-4xl font-bold text-primary">
+              {country?.probabilityBeingBorn}%
+            </p>
+            <p className="mt-1 text-sm text-muted-foreground">
+              probability of being born here
+            </p>
+          </div>
 
-        {/* Map Placeholder */}
-        <div className="mb-4 flex h-48 items-center justify-center rounded-lg border-2 border-dashed border-border bg-muted/30">
-          <span className="text-muted-foreground">map goes here</span>
-        </div>
+          {/* Map Placeholder */}
+          <div className="mb-4 flex h-48 items-center justify-center rounded-lg border-2 border-dashed border-border bg-muted/30">
+            <span className="text-muted-foreground">map goes here</span>
+          </div>
 
-        {/* Info Placeholder */}
-        <div className="flex h-32 items-center justify-center rounded-lg border-2 border-dashed border-border bg-muted/30">
-          <span className="text-muted-foreground">info goes here</span>
+          {/* Info Placeholder */}
+          <div className="flex h-32 items-center justify-center rounded-lg border-2 border-dashed border-border bg-muted/30">
+            <span className="text-muted-foreground">info goes here</span>
+          </div>
+        </Card>
+      )}
+
+      {!randomVisibility && (
+        <div className="mb-4 rounded-lg border border-border bg-muted/20 p-2 md:p-4">
+          <MapChart />
         </div>
-      </Card>
+      )}
     </>
   );
 };

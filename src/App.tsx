@@ -18,6 +18,7 @@ export const App = () => {
 
           <RandomCountryGenerator algoLogic={countryAlgo} />
         </div>
+        
       </main>
     </>
   );

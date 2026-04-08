@@ -1,3 +1,4 @@
+import { formattedString } from "@/helpers/formattedString";
 import type { Country } from "@/models/types";
 
 export class WeightRandomAlgo {
@@ -23,9 +24,18 @@ export class WeightRandomAlgo {
       this.totalWeight += weight;
       this.cumulativeWeight[i] = this.totalWeight;
       this.countriesMap.set(
-        countries[i].name.toLocaleLowerCase().replaceAll(" ", ""),
+        formattedString(countries[i].name),
         countries[i].population,
       );
+
+      if (countries[i].alias) {
+        for (const alias of countries[i].alias) {
+          this.countriesMap.set(
+            formattedString(alias),
+            countries[i].population,
+          );
+        }
+      }
     }
 
     if (this.totalWeight <= 0) {
@@ -59,7 +69,7 @@ export class WeightRandomAlgo {
       throw new Error("Not valid name or empty string");
     }
 
-    const population = this.countriesMap.get(name.toLocaleLowerCase());
+    const population = this.countriesMap.get(formattedString(name));
 
     if (population === undefined) {
       return 0;

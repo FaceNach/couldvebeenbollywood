@@ -6,7 +6,7 @@ export const getCountryData = async (
   const baseUrl = import.meta.env.VITE_COUNTRIES_API_URL;
 
   try {
-    const response = await fetch(`${baseUrl}/${country}`);
+    const response = await fetch(`${baseUrl}/${country}?fullText=true`);
 
     if (!response.ok) {
       throw new Error("Country not found");
@@ -19,6 +19,7 @@ export const getCountryData = async (
       name: {
         common: data.name.common,
       },
+      cca3: data.cca3,
       flags: {
         svg: data.flags.svg,
         alt: data.flags.alt,

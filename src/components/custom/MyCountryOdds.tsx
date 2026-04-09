@@ -53,19 +53,19 @@ export const MyCountryOdds = ({ algoLogic }: MyCountryOddsProps) => {
 
   return (
     <>
-      <section className="mb-12 rounded-xl border border-border bg-card p-6">
-        <p className="mb-4 text-sm text-muted-foreground">
+      <section className="mb-12 rounded-none border-4 border-black bg-white p-6 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)]">
+        <p className="mb-6 text-lg font-bold uppercase text-black">
           Check the odds for your actual country of origin
         </p>
-        <div className="flex gap-3">
+        <div className="flex flex-col gap-4 sm:flex-row sm:gap-3">
           <Input
             type="text"
             ref={userCountry}
             placeholder="Enter a country..."
-            className="flex-1 rounded-lg border border-border bg-input px-4 py-2.5 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring"
+            className="flex-1 rounded-none border-4 border-black bg-[#E2E8F0] px-4 py-6 text-lg font-bold text-black placeholder:text-gray-500 focus:bg-white focus:outline-none focus:ring-0 focus-visible:ring-0"
           />
           <Button
-            className="rounded-lg bg-secondary px-5 py-2.5 font-medium text-secondary-foreground transition-colors hover:bg-secondary/80"
+            className="cursor-pointer h-auto rounded-none border-4 border-black bg-[#4ADE80] px-8 py-4 text-xl font-black uppercase text-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] transition-all hover:-translate-x-1 hover:-translate-y-1 hover:bg-[#4ADE80] hover:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] active:translate-x-[4px] active:translate-y-[4px] active:shadow-none"
             onClick={handleMyCountryOdds}
           >
             Check my odds
@@ -76,10 +76,11 @@ export const MyCountryOdds = ({ algoLogic }: MyCountryOddsProps) => {
             <span
               style={{
                 color: "red",
-                fontSize: "12px",
+                fontSize: "14px",
+                fontWeight: "bold",
                 display: "block",
-                marginTop: "4px",
-                marginLeft: "10px",
+                marginTop: "8px",
+                marginLeft: "4px",
               }}
             >
               {errorMsg}
@@ -89,11 +90,11 @@ export const MyCountryOdds = ({ algoLogic }: MyCountryOddsProps) => {
 
         {/* Country odds result card */}
         {oddsVisibility && (
-          <div className="mt-4 rounded-lg border border-border bg-background p-4">
-            <p className="text-sm text-muted-foreground">
+          <div className="mt-6 rounded-none border-4 border-black bg-[#FF90E8] p-6 text-center shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
+            <p className="text-xl font-bold uppercase text-black">
               {myCountryOdds?.countryName}
             </p>
-            <p className="text-2xl font-bold text-primary">
+            <p className="text-5xl font-black text-black drop-shadow-[2px_2px_0px_rgba(255,255,255,1)]">
               {myCountryOdds?.percentage}%
             </p>
           </div>

@@ -3,7 +3,7 @@ import { MyCountryOdds } from "./components/custom/MyCountryOdds";
 import "./index.css";
 import { RandomCountryGenerator } from "./components/custom/RandomCountryGenerator";
 import { useMemo } from "react";
-import { WeightRandomAlgo } from "./hooks/weightRndAlg";
+import { WeightRandomAlgo } from "./classes/weightRndAlg";
 import { COUNTRIES } from "./models/countries";
 
 export const App = () => {

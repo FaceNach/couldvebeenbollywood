@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { formattedPercentage } from "@/helpers/formattedPercetage";
-import type { WeightRandomAlgo } from "@/hooks/weightRndAlg";
+import { formattedPercentage } from "@/helpers/formattedPercentage";
+import type { WeightRandomAlgo } from "@/classes/weightRndAlg";
 
 import { useRef, useState } from "react";
 

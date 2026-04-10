@@ -1,8 +1,8 @@
 import { getCountryData } from "@/api/getCountryData";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { formattedPercentage } from "@/helpers/formattedPercetage";
-import type { WeightRandomAlgo } from "@/hooks/weightRndAlg";
+import { formattedPercentage } from "@/helpers/formattedPercentage";
+import type { WeightRandomAlgo } from "@/classes/weightRndAlg";
 import { useState } from "react";
 import { MapChart } from "./GlobalMap";
 import { CountryHighlightMap } from "./CountryHighlightMap";
